@@ -89,7 +89,7 @@ plt.xlabel('Quantity of NaN')
 ##############################################################################
 
 
-def plotData(data_dict, features):
+def plot_data(data_dict, features):
     '''
     Plot features denoting poi's by color
     '''
@@ -107,7 +107,7 @@ features = ['poi', 'salary', 'bonus']
 # remove the outliers
 data_dict.pop('TOTAL', 0)
 data_dict.pop('THE TRAVEL AGENCY IN THE PARK', 0)
-# plotData(data_dict, features)
+# plot_data(data_dict, features)
 
 ##############################################################################
 # Task 3: Create new feature(s)
@@ -117,7 +117,7 @@ data_dict.pop('THE TRAVEL AGENCY IN THE PARK', 0)
 my_dataset = data_dict
 
 
-def computeRatio(numerator, denominator):
+def compute_ratio(numerator, denominator):
     ratio = float(numerator) / float(denominator)
     ratio = ratio if not math.isnan(ratio) else 0
     # return 0 if num or den is NAN
@@ -139,9 +139,9 @@ for name in my_dataset:
     total_stock_value = data_point["total_stock_value"]
     exercised_stock_options = data_point["exercised_stock_options"]
 
-    ratio_from_poi = computeRatio(from_poi_to_this_person, to_messages)
-    ratio_to_poi = computeRatio(from_this_person_to_poi, from_messages)
-    ratio_exercised_stock_tot_stock_value = computeRatio(exercised_stock_options, total_stock_value)
+    ratio_from_poi = compute_ratio(from_poi_to_this_person, to_messages)
+    ratio_to_poi = compute_ratio(from_this_person_to_poi, from_messages)
+    ratio_exercised_stock_tot_stock_value = compute_ratio(exercised_stock_options, total_stock_value)
 
     data_point["ratio_from_poi"] = ratio_from_poi
     data_point["ratio_to_poi"] = ratio_to_poi
@@ -258,8 +258,8 @@ dt_param = {'criterion': ('gini', 'entropy'),
 dt_grid_search = GridSearchCV(estimator=dt_clf, param_grid=dt_param)
 
 print("Decision Tree model evaluation")
-tune_params(dt_grid_search, features, labels, dt_param)
-tune_params(dt_grid_search, new_features, new_labels, dt_param)
+#tune_params(dt_grid_search, features, labels, dt_param)
+#tune_params(dt_grid_search, new_features, new_labels, dt_param)
 
 # 4. Random Forest
 rf_clf = RandomForestClassifier(n_estimators=10)
